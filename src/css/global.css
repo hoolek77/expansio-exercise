@@ -27,3 +27,19 @@ button {
 button:focus {
   outline: none;
 }
+
+.app {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  background-color: #fafafa;
+}

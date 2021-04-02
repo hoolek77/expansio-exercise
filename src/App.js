@@ -1,79 +1,50 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import InfoScreen from './components/InfoScreen';
-import UserScreen from './components/UserScreen';
+import InfoScreen from './components/InfoScreen/InfoScreen.jsx';
+import UserScreen from './components/UserScreen/UserScreen';
 import './css/global.css';
+import useRandomUser from './hooks/useRandomUser';
 
 const App = () => {
-  const [isUserScreen, setIsUserScreen] = useState(true);
   const [counter, setCounter] = useState(0);
   const [text, setText] = useState('');
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await fetch('https://randomuser.me/api/');
-        const user = await response.json();
-        setUser(user.results[0]);
-
-        // just for demo purpose
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-      } catch (ex) {
-        alert(ex);
-        setIsLoading(false);
-      }
-    };
-    getUser();
-  }, []);
+  const [randomUser, isLoading] = useRandomUser();
 
   return (
-    <div style={appStyles}>
-      <div style={containerStyles}>
-        {isLoading ? (
-          <CircularProgress />
-        ) : (
-          <>
-            {isUserScreen ? (
-              <UserScreen
-                user={user}
-                setIsUserScreen={setIsUserScreen}
-                counter={counter}
-                setCounter={setCounter}
-                setText={setText}
-                text={text}
-              />
-            ) : (
-              <InfoScreen
-                setIsUserScreen={setIsUserScreen}
-                counter={counter}
-                text={text}
-              />
-            )}
-          </>
-        )}
+    <div className='app'>
+      <div className='container'>
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path='/'
+              component={() =>
+                isLoading ? (
+                  <CircularProgress />
+                ) : (
+                  <UserScreen
+                    user={randomUser}
+                    counter={counter}
+                    setCounter={setCounter}
+                    setText={setText}
+                    text={text}
+                  />
+                )
+              }
+              key='user-route'
+            />
+            <Route
+              exact
+              path='/info'
+              component={() => <InfoScreen counter={counter} text={text} />}
+              key='info-route'
+            />
+          </Switch>
+        </BrowserRouter>
       </div>
     </div>
   );
-};
-
-const appStyles = {
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-};
-
-const containerStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '400px',
-  backgroundColor: '#fafafa',
 };
 
 export default App;
