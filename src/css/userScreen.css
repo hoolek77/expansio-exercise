@@ -1,0 +1,45 @@
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info img {
+  border-radius: 50%;
+  border: 2px solid blue;
+  margin-bottom: 3rem;
+}
+
+.user-info p {
+  font-size: 1.8rem;
+}
+
+.counter {
+  margin-top: 3rem;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counter p {
+  font-size: 1.2rem;
+}
+
+.text-form {
+  margin-top: 2rem;
+}
+
+.text-form input {
+  padding: 1rem;
+  height: 3rem;
+  width: 12rem;
+  border: 1px solid #00ff00;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease-in;
+}
+
+input:focus {
+  outline: none;
+}

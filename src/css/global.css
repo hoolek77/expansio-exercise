@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  width: 3rem;
+  height: 3rem;
+  background-color: green;
+  border: none;
+  color: white;
+  font-size: 14px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}

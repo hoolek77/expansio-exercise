@@ -1,0 +1,15 @@
+.counter-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  border: 2px solid blue;
+  border-radius: 50%;
+  font-size: 1.6rem;
+}
+
+.text-value {
+  margin: 2rem 0;
+  font-size: 2rem;
+}
