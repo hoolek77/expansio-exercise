@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import InfoScreen from './components/InfoScreen/InfoScreen.jsx';
 import UserScreen from './components/UserScreen/UserScreen';
@@ -7,41 +6,34 @@ import './css/global.css';
 import useRandomUser from './hooks/useRandomUser';
 
 const App = () => {
+  const [randomUser, isLoading] = useRandomUser();
   const [counter, setCounter] = useState(0);
   const [text, setText] = useState('');
-  const [randomUser, isLoading] = useRandomUser();
+  const [isUserScreen, setIsUserScreen] = useState(true);
 
   return (
     <div className='app'>
       <div className='container'>
-        <BrowserRouter>
-          <Switch>
-            <Route
-              exact
-              path='/'
-              component={() =>
-                isLoading ? (
-                  <CircularProgress />
-                ) : (
-                  <UserScreen
-                    user={randomUser}
-                    counter={counter}
-                    setCounter={setCounter}
-                    setText={setText}
-                    text={text}
-                  />
-                )
-              }
-              key='user-route'
+        {isUserScreen ? (
+          isLoading ? (
+            <CircularProgress />
+          ) : (
+            <UserScreen
+              setIsUserScreen={setIsUserScreen}
+              setCounter={setCounter}
+              counter={counter}
+              text={text}
+              setText={setText}
+              user={randomUser}
             />
-            <Route
-              exact
-              path='/info'
-              component={() => <InfoScreen counter={counter} text={text} />}
-              key='info-route'
-            />
-          </Switch>
-        </BrowserRouter>
+          )
+        ) : (
+          <InfoScreen
+            counter={counter}
+            text={text}
+            setIsUserScreen={setIsUserScreen}
+          />
+        )}
       </div>
     </div>
   );

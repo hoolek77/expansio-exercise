@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './UserScreen.css';
 
-const UserScreen = ({ user, counter, setCounter, text, setText }) => {
+const UserScreen = ({
+  user,
+  counter,
+  text,
+  setIsUserScreen,
+  setText,
+  setCounter,
+}) => {
   return (
     <>
       <div className='user-info'>
@@ -26,9 +32,7 @@ const UserScreen = ({ user, counter, setCounter, text, setText }) => {
           onChange={(e) => setText(e.target.value)}
         />
       </form>
-      <Link to='/info'>
-        <button>Dalej</button>
-      </Link>
+      <button onClick={() => setIsUserScreen((prev) => !prev)}>Dalej</button>
     </>
   );
 };

@@ -1,15 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './InfoScreen.css';
 
-const InfoScreen = ({ counter, text }) => {
+const InfoScreen = ({ setIsUserScreen, counter, text }) => {
   return (
     <>
       <div className='counter-value'>{counter}</div>
       <div className='text-value'>{text}</div>
-      <Link to='/'>
-        <button>Wstecz</button>
-      </Link>
+
+      <button onClick={() => setIsUserScreen((prev) => !prev)}>Wstecz</button>
     </>
   );
 };
