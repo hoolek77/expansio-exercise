@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useData from '../../hooks/useData';
 import { Button } from '../../components';
 import './UserScreen.css';
 
-export const UserScreen = ({ user, setIsUserScreen }) => {
+export const UserScreen = ({ user }) => {
   const { increment, decrement, changeText, text, counter } = useData();
 
   return (
@@ -34,7 +35,9 @@ export const UserScreen = ({ user, setIsUserScreen }) => {
           onChange={(e) => changeText(e.target.value)}
         />
       </form>
-      <Button onClick={() => setIsUserScreen((prev) => !prev)}>Dalej</Button>
+      <Link to='/info'>
+        <Button>Dalej</Button>
+      </Link>
     </>
   );
 };

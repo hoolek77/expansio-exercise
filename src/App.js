@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { DataContextProvider } from './context/data.js';
 import useRandomUser from './hooks/useRandomUser';
 import { UserScreen, InfoScreen } from './views';
@@ -8,20 +8,24 @@ import './css/global.css';
 
 const App = () => {
   const [randomUser, isLoading] = useRandomUser();
-  const [isUserScreen, setIsUserScreen] = useState(true);
 
   return (
     <DataContextProvider>
       <div className='app'>
         <Container>
-          {isUserScreen ? (
-            isLoading ? (
-              <CircularProgress />
-            ) : (
-              <UserScreen setIsUserScreen={setIsUserScreen} user={randomUser} />
-            )
+          {isLoading ? (
+            <CircularProgress />
           ) : (
-            <InfoScreen setIsUserScreen={setIsUserScreen} />
+            <BrowserRouter>
+              <Switch>
+                <Route
+                  exact
+                  path='/'
+                  component={() => <UserScreen user={randomUser} />}
+                />
+                <Route exact path='/info' component={() => <InfoScreen />} />
+              </Switch>
+            </BrowserRouter>
           )}
         </Container>
       </div>
