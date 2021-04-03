@@ -1,20 +1,20 @@
-import { useContext } from 'react';
-import { DataContext } from '../context/data';
+import { useContext } from 'react'
+import { DataContext } from '../context/data'
 
 const useData = () => {
-  const [state, setState] = useContext(DataContext);
+  const [state, setState] = useContext(DataContext)
 
   const increment = () => {
-    setState((state) => ({ ...state, counter: state.counter + 1 }));
-  };
+    setState((prevState) => ({ ...prevState, counter: prevState.counter + 1 }))
+  }
 
   const decrement = () => {
-    setState((state) => ({ ...state, counter: state.counter - 1 }));
-  };
+    setState((prevState) => ({ ...prevState, counter: prevState.counter - 1 }))
+  }
 
   const changeText = (text) => {
-    setState((state) => ({ ...state, text }));
-  };
+    setState((prevState) => ({ ...prevState, text }))
+  }
 
   return {
     increment,
@@ -22,7 +22,7 @@ const useData = () => {
     changeText,
     counter: state.counter,
     text: state.text,
-  };
-};
+  }
+}
 
-export default useData;
+export default useData
