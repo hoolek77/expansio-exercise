@@ -1,6 +1,6 @@
 export const theme = {
   darkTheme: {
-    borderPrimary: 'darkblue',
+    borderPrimary: '#d21f3c',
     borderSecondary: '#ff00ff',
     boxShadow: '#99aab5',
     background: '#2C2F33',

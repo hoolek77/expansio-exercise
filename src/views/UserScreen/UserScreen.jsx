@@ -31,6 +31,7 @@ const StyledCounter = styled.div`
 
 const StyledCounterParagraph = styled.p`
   font-size: 1.2rem;
+  color: ${(props) => props.theme.colorPrimary};
 `
 
 const StyledForm = styled.form`

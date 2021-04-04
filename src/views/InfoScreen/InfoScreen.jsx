@@ -13,6 +13,7 @@ const StyledCounterValue = styled.div`
   border: 2px solid ${(props) => props.theme.borderPrimary};
   border-radius: 50%;
   font-size: 1.6rem;
+  color: ${(props) => props.theme.colorPrimary};
 `
 
 const StyledTextValue = styled.div`
