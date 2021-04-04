@@ -1,6 +1,15 @@
 import React from 'react'
-import './container.css'
+import styled from 'styled-components'
 
-export const Container = ({ children }) => {
-  return <div className="container">{children}</div>
-}
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  background-color: ${(props) => props.theme.background};
+`
+
+export const Container = ({ children }) => (
+  <StyledContainer>{children}</StyledContainer>
+)
